@@ -66,6 +66,14 @@ const Word: React.FC<WordProps> = ({ word = 'defaultWord', onFinish, isStart, wo
       inputWordLength = inputWord.length
     const statesList: LetterState[] = []
 
+    if (inputWordLength === 0) {
+      // 在输入开始阶段（包括输错回退）播放单词发音
+      // 使用浏览器自带接口，语音效果与浏览器及操作系统相关。
+      var msg = new SpeechSynthesisUtterance()
+      msg.text = word
+      window.speechSynthesis.speak(msg)
+    }
+
     for (let i = 0; i < wordLength && i < inputWordLength; i++) {
       if (word[i] === inputWord[i]) {
         statesList.push('correct')
