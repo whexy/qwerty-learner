@@ -67,10 +67,9 @@ const Word: React.FC<WordProps> = ({ word = 'defaultWord', onFinish, isStart, wo
 
     if (inputWordLength === 0) {
       // 在输入开始阶段（包括输错回退）播放单词发音
-      // 使用浏览器自带接口，语音效果与浏览器及操作系统相关。
-      var msg = new SpeechSynthesisUtterance()
-      msg.text = word
-      window.speechSynthesis.speak(msg)
+      // 使用有道发音接口。
+      var audio = new Audio('http://dict.youdao.com/dictvoice?audio=' + word)
+      audio.play()
     }
 
     for (let i = 0; i < wordLength && i < inputWordLength; i++) {
