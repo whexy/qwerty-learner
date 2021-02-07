@@ -15,7 +15,7 @@
 </div>
 
 
-(原仓库地址)[https://github.com/Kaiyiwing/qwerty-learner]
+[原仓库地址](https://github.com/Kaiyiwing/qwerty-learner)
 
 ## Fork 仓库改写说明
 
