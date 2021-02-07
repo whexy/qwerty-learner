@@ -8,25 +8,19 @@ const Footer: React.FC = () => {
     <>
       {showDonate && <Donate state={showDonate} buttonOnclick={() => setShowDonate(false)} />}
       <div className="w-full text-sm text-center pb-1 ease-in" onClick={(e) => e.currentTarget.blur()}>
-        <a href="https://github.com/Kaiyiwing/qwerty-learner">
+        <a href="https://github.com/whexy/qwerty-learner">
           <FontAwesomeIcon icon={['fab', 'github']} className="text-gray-500 mr-3" />
         </a>
 
-        <a
-          href="/#"
-          onClick={(e) => {
-            setShowDonate(true)
-            e.currentTarget.blur()
-          }}
-        >
-          <FontAwesomeIcon icon={['fas', 'coffee']} className="text-gray-500 mr-3" />
-        </a>
-
-        <a href="mailto:ZHANG.Kaiyi42@gmail.com" onClick={(e) => e.currentTarget.blur()}>
+        <a href="mailto:gwhexy@gmail.com" onClick={(e) => e.currentTarget.blur()}>
           <FontAwesomeIcon icon={['fas', 'envelope']} className="text-gray-500 mr-3" />
         </a>
         <a className="text-gray-500 no-underline hover:no-underline" href="#/" onClick={(e) => e.currentTarget.blur()}>
           @ Qwerty Learner
+        </a>
+
+        <a href="https://www.whexy.com" className="text-gray-500 mr-3">
+          (modified by Wenxuan SHI)
         </a>
       </div>
     </>
