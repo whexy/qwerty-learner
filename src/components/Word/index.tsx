@@ -3,6 +3,7 @@ import Letter, { LetterState } from './Letter'
 import { isLegal, isChineseSymbol } from '../../utils/utils'
 import useSounds from 'hooks/useSounds'
 import style from './index.module.css'
+import usepronunciationSound from 'hooks/usePronouncation'
 
 const Word: React.FC<WordProps> = ({ word = 'defaultWord', onFinish, isStart, wordVisible = true }) => {
   word = word.replace(new RegExp(' ', 'g'), '_')
@@ -12,6 +13,7 @@ const Word: React.FC<WordProps> = ({ word = 'defaultWord', onFinish, isStart, wo
   const [isFinish, setIsFinish] = useState(false)
   const [hasWrong, setHasWrong] = useState(false)
   const [playKeySound, playBeepSound, playHintSound] = useSounds()
+  const [playPronounce] = usepronunciationSound(word)
 
   const onKeydown = useCallback(
     (e) => {
@@ -60,17 +62,18 @@ const Word: React.FC<WordProps> = ({ word = 'defaultWord', onFinish, isStart, wo
   }, [hasWrong, playBeepSound])
 
   useLayoutEffect(() => {
+    if (inputWord.length === 0) {
+      playPronounce()
+    }
+    // SAFETY: Don't depend on `playPronounce`! It will cost audio play again and again.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [inputWord])
+
+  useLayoutEffect(() => {
     let hasWrong = false,
       wordLength = word.length,
       inputWordLength = inputWord.length
     const statesList: LetterState[] = []
-
-    if (inputWordLength === 0) {
-      // 在输入开始阶段（包括输错回退）播放单词发音
-      // 使用有道发音接口。
-      var audio = new Audio('http://dict.youdao.com/dictvoice?audio=' + word)
-      audio.play()
-    }
 
     for (let i = 0; i < wordLength && i < inputWordLength; i++) {
       if (word[i] === inputWord[i]) {
