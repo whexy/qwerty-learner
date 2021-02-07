@@ -18,7 +18,7 @@ const Switcher: React.FC<SwitcherPropsType> = ({ state, dispatch }) => {
     [dispatch],
   )
   useHotkeys(
-    'ctrl+v',
+    'ctrl+d',
     (e) => {
       e.preventDefault()
       dispatch('wordVisible')
@@ -83,7 +83,7 @@ const Switcher: React.FC<SwitcherPropsType> = ({ state, dispatch }) => {
           <FontAwesomeIcon icon={state.wordVisible ? 'eye' : 'eye-slash'} fixedWidth />
         </button>
         <div className="invisible group-hover:visible absolute top-full left-1/2 w-44 -ml-20 pt-2 flex items-center justify-center">
-          <span className="py-1 px-3 text-gray-500 text-xs">开关英语显示（Ctrl + V）</span>
+          <span className="py-1 px-3 text-gray-500 text-xs">开关英语显示（Ctrl + D）</span>
         </div>
       </div>
       <div className="group relative">
