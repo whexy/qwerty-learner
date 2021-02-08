@@ -20,7 +20,7 @@ const Footer: React.FC = () => {
         </a>
 
         <a href="https://www.whexy.com" className="text-gray-500 mr-3">
-          (modified by Wenxuan SHI)
+          (This is a demo version modified by Wenxuan SHI)
         </a>
       </div>
     </>
